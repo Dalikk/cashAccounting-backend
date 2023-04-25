@@ -1,0 +1,18 @@
+{
+  "name": "cash-accounting-backend",
+  "version": "0.0.1",
+  "type": "module",
+  "description": "A simple express app for shop cash accounting",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "start:dev": "nodemon index.js"
+  },
+  "author": "Albert Dmitriev",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "nodemon": "^2.0.22"
+  }
+}
