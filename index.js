@@ -6,6 +6,7 @@ import * as OperationController from "./controllers/OperationController.js";
 import * as CashController from "./controllers/CashController.js";
 import * as DebtController from "./controllers/DebtController.js";
 import * as InvoiceController from "./controllers/InvoiceController.js";
+import checkApiKey from "./utils/checkApiKey.js";
 
 dotenv.config({path: './.local.env'});
 
@@ -26,6 +27,7 @@ mongoose.connect(mongoUri)
 const app = express();
 
 app.use(express.json());
+app.use(checkApiKey);
 
 app.get('/', (req, res) => {
   res.json({"msg": "hello!"});
