@@ -7,7 +7,7 @@ import * as CashController from "./controllers/CashController.js";
 import * as DebtController from "./controllers/DebtController.js";
 import * as InvoiceController from "./controllers/InvoiceController.js";
 
-dotenv.config();
+dotenv.config({path: './.local.env'});
 
 const port = process.env.PORT || 5001;
 const mongoUri = process.env.MONGO_URI;
