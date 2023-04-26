@@ -7,7 +7,7 @@ const getOperationsSum = async () => {
     const operations = await OperationModel.find().exec();
     const operationsSum = operations.reduce(
       (acc, item) =>
-        acc + item.value,
+        item.type !== 'cash' ? acc + item.value : acc - item.value,
       0
       )
     return operationsSum;
