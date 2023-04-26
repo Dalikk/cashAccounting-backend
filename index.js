@@ -3,6 +3,9 @@ import express from "express";
 import mongoose from "mongoose";
 
 import * as OperationController from "./controllers/OperationController.js";
+import * as CashController from "./controllers/CashController.js";
+import * as DebtController from "./controllers/DebtController.js";
+import * as InvoiceController from "./controllers/InvoiceController.js";
 
 dotenv.config();
 
@@ -30,6 +33,14 @@ app.get('/', (req, res) => {
 
 app.get('/operations', OperationController.getAllOperations);
 app.post('/operations', OperationController.createOperation);
+
+app.get('/cash', CashController.getCurrentCash);
+
+app.get('/debts', DebtController.getAllDebts);
+app.post('/debts', DebtController.createDebt);
+
+app.get('/invoices', InvoiceController.getAllInvoices);
+app.post('/invoices', InvoiceController.createInvoice);
 
 app.listen(port, (err) => {
   if (err) {
