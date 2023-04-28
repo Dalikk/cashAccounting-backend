@@ -8,6 +8,8 @@ import * as CashController from "./controllers/CashController.js";
 import * as DebtController from "./controllers/DebtController.js";
 import * as InvoiceController from "./controllers/InvoiceController.js";
 import checkApiKey from "./utils/checkApiKey.js";
+import { operationCreateValidation } from "./utils/validations.js";
+import handleValidationErrors from "./utils/handleValidationErrors.js";
 
 dotenv.config({path: './.local.env'});
 
@@ -36,7 +38,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/operations', OperationController.getAllOperations);
-app.post('/operations', OperationController.createOperation);
+app.post('/operations', operationCreateValidation, handleValidationErrors, OperationController.createOperation);
 
 app.get('/cash', CashController.getCurrentCash);
 
