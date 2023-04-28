@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
+import morgan from "morgan";
 
 import * as OperationController from "./controllers/OperationController.js";
 import * as CashController from "./controllers/CashController.js";
@@ -27,6 +28,7 @@ mongoose.connect(mongoUri)
 const app = express();
 
 app.use(express.json());
+app.use(morgan("combined"));
 app.use(checkApiKey);
 
 app.get('/', (req, res) => {
