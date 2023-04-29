@@ -39,6 +39,7 @@ app.get('/', (req, res) => {
 
 app.get('/operations', OperationController.getAllOperations);
 app.post('/operations', operationCreateValidation, handleValidationErrors, OperationController.createOperation);
+app.delete('/operations/:_id', OperationController.deleteOperation)
 
 app.get('/cash', CashController.getCurrentCash);
 

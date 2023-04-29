@@ -26,3 +26,16 @@ export const createOperation = async (req, res) => {
       res.status(500).json({ msg: "Something went wrong" });
   }
 }
+
+export const deleteOperation = async (req, res) => {
+  try {
+      const _id = req.params._id;
+      console.log(_id);
+      const operation = await OperationModel.deleteOne({_id});
+      res.json(operation);
+  } catch (err) {
+      console.log(err);
+      res.status(500).json({ msg: "Something went wrong" });
+  }
+
+}
