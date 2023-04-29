@@ -2,6 +2,9 @@ import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
 import morgan from "morgan";
+import rfs from "rotating-file-stream";
+import path from "path";
+import { fileURLToPath } from 'url';
 
 import * as OperationController from "./controllers/OperationController.js";
 import * as CashController from "./controllers/CashController.js";
@@ -11,12 +14,19 @@ import checkApiKey from "./utils/checkApiKey.js";
 import { operationCreateValidation } from "./utils/validations.js";
 import handleValidationErrors from "./utils/handleValidationErrors.js";
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 dotenv.config({path: './.local.env'});
 
 const port = process.env.PORT || 5001;
 const mongoUri = process.env.MONGO_URI;
 if (!mongoUri) throw new Error("Mongo URI required");
 console.log(mongoUri);
+
+// create a rotating write stream
+const accessLogStream = rfs.createStream('access.log', {
+  interval: '1d', // rotate daily
+  path: path.join(__dirname, 'log')
+});
 
 mongoose.connect(mongoUri)
   .then(() => {
@@ -30,7 +40,7 @@ mongoose.connect(mongoUri)
 const app = express();
 
 app.use(express.json());
-app.use(morgan("combined"));
+app.use(morgan("combined", { stream: accessLogStream }));
 app.use(checkApiKey);
 
 app.get('/', (req, res) => {

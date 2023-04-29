@@ -16,6 +16,7 @@
     "express-validator": "^7.0.1",
     "mongoose": "^7.0.5",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "rotating-file-stream": "^3.1.0"
   }
 }
