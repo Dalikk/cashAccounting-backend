@@ -1,4 +1,10 @@
-import mongoose from "mongoose";
+import mongoose, { InferSchemaType } from "mongoose";
+
+// export interface IOperation {
+//   type: 'cash' | 'credit' | 'mobileBank',
+//   value: number,
+//   description?: string,
+// }
 
 const OperationSchema = new mongoose.Schema(
   {
@@ -20,5 +26,8 @@ const OperationSchema = new mongoose.Schema(
     timestamps: true,
   }
 )
+
+export type OperationType = InferSchemaType<typeof OperationSchema>;
+export type OperationTypeCreate = Omit<OperationType, 'createdAt' | 'updatedAt'>
 
 export default mongoose.model('Operation', OperationSchema);
