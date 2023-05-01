@@ -1,20 +1,18 @@
-import dotenv from "dotenv";
-import express from "express";
+import * as dotenv from "dotenv";
+import * as express from "express";
 import mongoose from "mongoose";
-import morgan from "morgan";
-import rfs from "rotating-file-stream";
-import path from "path";
-import { fileURLToPath } from 'url';
+import * as morgan from "morgan";
+import * as rfs from "rotating-file-stream";
+import * as path from "path";
 
-import * as OperationController from "./controllers/OperationController.js";
-import * as CashController from "./controllers/CashController.js";
-import * as DebtController from "./controllers/DebtController.js";
-import * as InvoiceController from "./controllers/InvoiceController.js";
-import checkApiKey from "./utils/checkApiKey.js";
-import { operationCreateValidation } from "./utils/validations.js";
-import handleValidationErrors from "./utils/handleValidationErrors.js";
+import * as OperationController from "./controllers/OperationController";
+import * as CashController from "./controllers/CashController";
+import * as DebtController from "./controllers/DebtController";
+import * as InvoiceController from "./controllers/InvoiceController";
+import checkApiKey from "./utils/checkApiKey";
+import { operationCreateValidation } from "./utils/validations";
+import handleValidationErrors from "./utils/handleValidationErrors";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
 dotenv.config({path: './.local.env'});
 
 const port = process.env.PORT || 5001;
@@ -59,9 +57,10 @@ app.post('/debts', DebtController.createDebt);
 app.get('/invoices', InvoiceController.getAllInvoices);
 app.post('/invoices', InvoiceController.createInvoice);
 
-app.listen(port, (err) => {
-  if (err) {
-    return console.error(err);
-  }
-  console.log(`Express app started at http://localhost:${port}`)
-});
+try {
+  app.listen(port, () => {
+    console.log(`Express app started at http://localhost:${port}`)
+  });
+} catch (err) {
+  console.log(err);
+}

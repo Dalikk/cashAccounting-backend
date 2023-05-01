@@ -1,4 +1,4 @@
-import DebtModel from "../models/Debt.js";
+import DebtModel from "../models/Debt";
 
 export const getAllDebts = async (req, res) => {
   try {

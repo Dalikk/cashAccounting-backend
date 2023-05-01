@@ -1,6 +1,6 @@
-import OperationModel from "../models/Operation.js";
-import DebtModel from "../models/Debt.js";
-import InvoiceModel from "../models/Invoice.js";
+import OperationModel from "../models/Operation";
+import DebtModel from "../models/Debt";
+import InvoiceModel from "../models/Invoice";
 
 // export const getCurrentCashState = async (req, res) => {
 const getOperationsSum = async () => {

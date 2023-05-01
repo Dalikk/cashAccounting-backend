@@ -1,4 +1,4 @@
-import OperationModel from "../models/Operation.js";
+import OperationModel from "../models/Operation";
 
 export const getAllOperations = async (req, res) => {
   try {
