@@ -1,6 +1,7 @@
-import mongoose, { InferSchemaType } from "mongoose";
+import mongoose, { InferSchemaType } from 'mongoose';
 
-const InvoiceSchema = new mongoose.Schema({
+const InvoiceSchema = new mongoose.Schema(
+  {
     organizationName: {
       type: String,
       required: true,
@@ -17,11 +18,12 @@ const InvoiceSchema = new mongoose.Schema({
       type: Boolean,
       required: true,
       default: false,
-    }
+    },
   },
   {
-    timestamps: true
-  })
+    timestamps: true,
+  },
+);
 
 export type InvoiceType = InferSchemaType<typeof InvoiceSchema>;
 export type InvoiceCreateType = Omit<InvoiceType, 'createdAt' | 'updatedAt'>;

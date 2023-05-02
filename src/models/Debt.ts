@@ -1,6 +1,7 @@
-import mongoose, { InferSchemaType } from "mongoose";
+import mongoose, { InferSchemaType } from 'mongoose';
 
-const DebtSchema = new mongoose.Schema({
+const DebtSchema = new mongoose.Schema(
+  {
     clientName: {
       type: String,
       required: true,
@@ -17,13 +18,14 @@ const DebtSchema = new mongoose.Schema({
       type: Boolean,
       required: true,
       default: false,
-    }
+    },
   },
   {
-    timestamps: true
-  })
+    timestamps: true,
+  },
+);
 
-export type DebtType = InferSchemaType<typeof DebtSchema>
-export type DebtCreateType = Omit<DebtType, 'createdAt' | 'updatedAt'>
+export type DebtType = InferSchemaType<typeof DebtSchema>;
+export type DebtCreateType = Omit<DebtType, 'createdAt' | 'updatedAt'>;
 
 export default mongoose.model('Debt', DebtSchema);
