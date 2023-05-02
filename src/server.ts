@@ -13,7 +13,7 @@ import checkApiKey from "./utils/checkApiKey";
 import { operationCreateValidation } from "./utils/validations";
 import handleValidationErrors from "./utils/handleValidationErrors";
 
-dotenv.config({path: './.local.env'});
+dotenv.config({path: path.join(__dirname, '../.local.env')});
 
 const port = process.env.PORT || 5001;
 const mongoUri = process.env.MONGO_URI;
@@ -23,7 +23,7 @@ console.log(mongoUri);
 // create a rotating write stream
 const accessLogStream = rfs.createStream('access.log', {
   interval: '1d', // rotate daily
-  path: path.join(__dirname, 'log')
+  path: path.join(__dirname, '..', 'log')
 });
 
 mongoose.connect(mongoUri)

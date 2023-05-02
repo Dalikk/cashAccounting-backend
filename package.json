@@ -2,10 +2,10 @@
   "name": "cash-accounting-backend",
   "version": "0.0.1",
   "description": "A simple express app for shop cash accounting",
-  "main": "index.ts",
+  "main": "./src/server.ts",
   "scripts": {
-    "start": "node index.ts",
-    "start:dev": "nodemon --exec ts-node index.ts"
+    "start": "node ./src/server.ts",
+    "start:dev": "nodemon --exec ts-node ./src/server.ts"
   },
   "author": "Albert Dmitriev",
   "license": "ISC",
