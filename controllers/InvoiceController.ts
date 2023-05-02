@@ -1,6 +1,9 @@
-import InvoiceModel from "../models/Invoice.js";
+import { Response } from "express";
+import InvoiceModel, {InvoiceCreateType, InvoiceType} from "../models/Invoice";
+import { Error } from "../types/common";
+import {RequestWithBody} from "../types/generics";
 
-export const getAllInvoices = async (req, res) => {
+export const getAllInvoices = async (req, res: Response<InvoiceType[] | Error>) => {
   try {
     const invoices = await InvoiceModel.find().exec();
     res.json(invoices);
@@ -10,7 +13,7 @@ export const getAllInvoices = async (req, res) => {
   }
 }
 
-export const createInvoice = async (req, res) => {
+export const createInvoice = async (req: RequestWithBody<InvoiceCreateType>, res: Response<InvoiceType | Error>) => {
   try {
     const doc = new InvoiceModel({
       organizationName: req.body.organizationName,

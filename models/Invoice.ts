@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { InferSchemaType } from "mongoose";
 
 const InvoiceSchema = new mongoose.Schema({
     organizationName: {
@@ -22,5 +22,8 @@ const InvoiceSchema = new mongoose.Schema({
   {
     timestamps: true
   })
+
+export type InvoiceType = InferSchemaType<typeof InvoiceSchema>;
+export type InvoiceCreateType = Omit<InvoiceType, 'createdAt' | 'updatedAt'>;
 
 export default mongoose.model('Invoice', InvoiceSchema);
