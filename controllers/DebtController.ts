@@ -1,6 +1,9 @@
-import DebtModel from "../models/Debt";
+import { Response } from "express";
+import DebtModel, { DebtCreateType, DebtType } from "../models/Debt";
+import { Error } from "../types/common";
+import { RequestWithBody } from "../types/generics";
 
-export const getAllDebts = async (req, res) => {
+export const getAllDebts = async (req, res: Response<DebtType[] | Error>) => {
   try {
       const debts = await DebtModel.find().exec();
       res.json(debts);
@@ -10,7 +13,7 @@ export const getAllDebts = async (req, res) => {
   }
 }
 
-export const createDebt = async (req, res) => {
+export const createDebt = async (req: RequestWithBody<DebtCreateType>, res: Response<DebtType | Error>) => {
   try {
       const doc = new DebtModel({
         clientName: req.body.clientName,

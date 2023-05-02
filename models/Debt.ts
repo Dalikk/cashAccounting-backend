@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { InferSchemaType } from "mongoose";
 
 const DebtSchema = new mongoose.Schema({
     clientName: {
@@ -22,5 +22,8 @@ const DebtSchema = new mongoose.Schema({
   {
     timestamps: true
   })
+
+export type DebtType = InferSchemaType<typeof DebtSchema>
+export type DebtCreateType = Omit<DebtType, 'createdAt' | 'updatedAt'>
 
 export default mongoose.model('Debt', DebtSchema);
