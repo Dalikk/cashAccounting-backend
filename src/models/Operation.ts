@@ -21,6 +21,10 @@ const OperationSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
+    dateTime: {
+      type: Date,
+      default: new Date(),
+    },
   },
   {
     timestamps: true,
